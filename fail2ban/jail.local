@@ -1,0 +1,14 @@
+[sshd]
+enabled = false
+port    = ssh
+logpath = %(sshd_log)s
+backend = %(sshd_backend)s
+
+[http-get-dos]
+enabled  = true
+filter   = http-get-dos-no-static
+action   = cloudflare-apiv4
+logpath  = /home/wwwlogs/example.com.log  #日志位置
+maxretry = 30                             #最大尝试次数
+findtime = 60                             #设置多长时间（秒）内超过 maxretry 限制次数即被封锁
+bantime = 120                             #非法 IP 被屏蔽时间（秒），-1 代表永远封锁
